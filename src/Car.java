@@ -4,7 +4,10 @@ public class Car {
     private String model;
     private int speed;
     private int year;
-
+    public Car(){
+        this.color = "Black";
+        this.brand = "BMW";
+    }
     public int accelerate (int increment){
         speed += increment;
         return speed;
