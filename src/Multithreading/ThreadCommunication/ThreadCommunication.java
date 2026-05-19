@@ -1,0 +1,79 @@
+package Multithreading.ThreadCommunication;
+
+class SharedResource {
+    private int data;
+    private boolean hasData;
+
+    public synchronized void produce(int value) {
+        while (hasData) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        data = value;
+        hasData = true;
+
+        System.out.println("Produced - " + data);
+        notify();
+    }
+
+    public synchronized int consumer() {
+        while (!hasData){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        hasData = false;
+        notify();
+        System.out.println("Consumedß - " + data);
+        return data;
+    }
+}
+
+
+class Producer implements Runnable {
+    private SharedResource resource;
+
+    public Producer(SharedResource resource) {
+        this.resource = resource;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            resource.produce(i);
+        }
+    }
+}
+
+class Consumer implements Runnable {
+    private SharedResource resource;
+
+    public Consumer(SharedResource resource) {
+        this.resource = resource;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            int value = resource.consumer();
+        }
+    }
+}
+
+public class ThreadCommunication {
+    public static void main(String[] args) {
+        SharedResource resource = new SharedResource();
+        Producer producer = new Producer(resource);
+        Consumer consumer = new Consumer(resource);
+        Thread producerThread = new Thread(producer);
+        Thread consumerThread = new Thread(consumer);
+
+        producerThread.start();
+        consumerThread.start();
+    }
+}
