@@ -45,7 +45,7 @@ class DependentService implements Callable<String> {
     @Override
     public String call() throws Exception {
         try {
-            System.out.println(Thread.currentThread().getName() + "Service Started !!! ");
+            System.out.println(Thread.currentThread().getName() + " Service Started !!! ");
             Thread.sleep(2000);
         } finally {
             latch.countDown();
