@@ -1,0 +1,42 @@
+package CollectionsFrameworkSelf;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class VectorDemo {
+    public static void main(String[] args) {
+        Vector<Integer> vector = new Vector<>(5);
+        vector.add(1);
+        System.out.println(vector);
+        System.out.println(vector.capacity());
+
+        // ArrayList is not thread safe here is the example
+        Vector<Integer> list = new Vector<>();
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                list.add(i);
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                list.add(i);
+            }
+        });
+
+        t1.start();
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        extracted(list);
+    }
+
+    private static void extracted(Vector<Integer> list) {
+        System.out.println("Size of the Vector list: " + list.size()); // Output: 2000
+    }
+}

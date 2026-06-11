@@ -13,7 +13,7 @@ public class ExecutorServiceProblem {
 //        future2.get();
 //        future3.get();
 //
-//        System.out.println("All dependent services finished. Starting main service ...");
+//        System.out.println("All dependent services finished. Starting ArrayListPractice service ...");
 //        executorService.shutdown();
 
         // To avoid the above problem we will be using countdownlatch ...
