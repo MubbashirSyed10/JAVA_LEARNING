@@ -21,7 +21,8 @@ public class Test {
         // Use of static methods
         String str = "   sads     sdasddfrgfd ";
         System.out.println(Utils.trimAndUppercase(str));
-
+        Utils utils = new Utils();
+        System.out.println(utils);
         System.out.println("PI Value = " + Utils.PI);
     }
 }
