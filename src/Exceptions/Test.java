@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.logging.FileHandler;
 
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InsufficientBalanceException {
         try {
             BankAccount bankAccount = new BankAccount(200.5);
             bankAccount.withdraw(5000);
@@ -19,12 +19,21 @@ public class Test {
 //            System.out.println(e);
 //        }
 
-        System.out.println(add(10, 20));
-        int[] numerators = {10, 200, 30, 40};
-        int[] denominators = {1, 2, 0, 4};
-        for (int i = 0; i < numerators.length; i++) {
-            System.out.println(divide(numerators[i], denominators[i]));
+        System.out.println(add(10,20));
+//        int add = add(1, 20);
+//        System.out.println(add);
+//        int[] numerators = {10, 200, 30, 40};
+//        int[] denominators = {1, 2, 0, 4};
+//        for (int i = 0; i < numerators.length; i++) {
+//            System.out.println(divide(numerators[i], denominators[i]));
+//
+//        }
 
+        // Custom exception
+        Integer balance = 20;
+        Integer amount = 30;
+        if(balance < amount){
+            throw new InsufficientBalanceException("Insufficient Balance !!!");
         }
     }
 
@@ -43,7 +52,7 @@ public class Test {
         } catch (Exception e) {
             return 20;
         } finally {
-            return 30;
+            System.out.println("PRInt - 30");
         }
     }
 }
