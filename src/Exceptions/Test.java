@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.logging.FileHandler;
 
 public class Test {
-    public static void main(String[] args) throws InsufficientBalanceException {
+    public static void main(String[] args){
         try {
             BankAccount bankAccount = new BankAccount(200.5);
             bankAccount.withdraw(5000);
@@ -32,8 +32,16 @@ public class Test {
         // Custom exception
         Integer balance = 20;
         Integer amount = 30;
-        if(balance < amount){
-            throw new InsufficientBalanceException("Insufficient Balance !!!");
+        try {
+            if (balance < amount) {
+                throw new InsufficientBalanceException(
+                        "Insufficient Balance !!!",
+                        new Exception("Invalid balance")
+                );
+            }
+        } catch (InsufficientBalanceException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Cause: " + e.getCause());
         }
     }
 
