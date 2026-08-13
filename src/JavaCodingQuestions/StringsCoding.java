@@ -15,9 +15,5 @@ public class StringsCoding {
             sb.append(words[i]);
         }
         System.out.println(sb);
-
-
-
-
     }
 }

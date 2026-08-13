@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Integer.MIN_VALUE;
 
 public class SlidingWindowMax {
     public static void main(String[] args) {

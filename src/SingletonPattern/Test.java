@@ -11,5 +11,8 @@ public class Test {
 
         System.out.println(s1.equals(s2));
         System.out.println(s1 == s1);
+
+        DoubleCheckedPattern doubleCheckedPattern = DoubleCheckedPattern.getInstance();
+        System.out.println(doubleCheckedPattern);
     }
 }
