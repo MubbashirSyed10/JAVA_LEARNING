@@ -34,6 +34,8 @@ public class HashMapDemo {
         map.put("Umar", 2);
         map.put("Uthman",  3);
         map.put("Umar", 22);
+        map.putIfAbsent("Umar", 11);
+        map.computeIfAbsent("Khalid", k -> 20);
         System.out.println(map.containsKey("Umar"));
         System.out.println("Map --> " + map);
         System.out.println(map.get("Umar"));
